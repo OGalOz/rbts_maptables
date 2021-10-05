@@ -1,0 +1,6 @@
+test_local
+sdk.cfg
+*.vim
+lib/tmp
+__pycache__
+tmp
