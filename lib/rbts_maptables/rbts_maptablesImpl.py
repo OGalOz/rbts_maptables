@@ -120,17 +120,17 @@ class rbts_maptables:
 
         logging.debug(os.listdir(td))
 
-        PrepareUserOutputs(vp, cfg_d)
+        report_params = PrepareUserOutputs(vp, cfg_d)
 
+        #Returning file in zipped format:-------------------------------------
+        report_util = KBaseReport(self.callback_url)
+        report_info = report_util.create_extended_report(report_params)
 
-        report = KBaseReport(self.callback_url)
-        report_info = report.create({'report': {'objects_created':[],
-                                                'text_message': ""},
-                                                'workspace_name': params['workspace_name']})
         output = {
             'report_name': report_info['name'],
             'report_ref': report_info['ref'],
         }
+
         #END run_rbts_maptables
 
         # At some point might do deeper type checking...
