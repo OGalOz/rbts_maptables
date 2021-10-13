@@ -4,12 +4,12 @@
 To understand what the program does and to
 learn how to run the program on KBase, refer
 to the PDF document in the directory 'documentation':
-[KBase app Explanation](documentation/RBTnSeq_Mapping.pdf)
+[KBase app Explanation](documentation/RBTnSeq_Mapping.pdf).
 To test the app on your system as a developer,
 download the repo, start up Docker Desktop,
 run '. docker_fix.sh', then run 'kb-sdk test'.
 Link to narrative tutorial on KBase: 
-[Tutorial](https://narrative.kbase.us/narrative/98832)
+[Tutorial](https://narrative.kbase.us/narrative/98832).
 
 
 
