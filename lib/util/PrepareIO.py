@@ -145,7 +145,7 @@ def PrepareUserOutputs(vp, cfg_d):
 
     report_params = {
             'workspace_name' : cfg_d['workspace_name'],
-            "message": "Finished Running MapTnSeq"
+            "message": "Finished Running MapTables"
             }
 
     report_params["file_links"] = [dir_link]
