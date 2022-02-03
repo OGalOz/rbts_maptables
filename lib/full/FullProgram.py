@@ -75,22 +75,10 @@ def CompleteRun(map_cfg_d, tmp_dir, gnm_nm,
 
     # Checking input
     if not isinstance(map_cfg_d, dict):
-        raise Exception("Did not get dict for map tn seq config as expected, instead: " + str(type(map_cfg_d)))
+        raise TypeError("Did not get dict for map tn seq config as expected, instead: " + str(type(map_cfg_d)))
     else:
         logging.debug(map_cfg_d.keys())
         map_cfg = map_cfg_d["values"]
-
-    """
-    # Loading MapTNSEQ Config Dictionary from JSON to python
-    with open(map_cfg_fp, "r") as g:
-        map_cfg = json.loads(g.read())["values"]
-
-    # LOADING DESIGN RANDOM POOL Config Dictionary from JSON to python
-    # to be used after map tn seq has finished running
-    with open(drp_cfg_fp, "r") as g:
-        drp_cfg = json.loads(g.read())["values"]
-
-    """
 
     # Initializing dict to be used for HTML generation
     pre_HTML_d = {"genome_name": gnm_nm, "orig_fq_fns": map_cfg["orig_fq_fns"]}
@@ -154,55 +142,6 @@ def CompleteRun(map_cfg_d, tmp_dir, gnm_nm,
         MTS_return_dict = RunMapTnSeq(current_map_cfg, DEBUGPRINT=False)
         pre_HTML_d["MapTnSeq_reports_list"].append(MTS_return_dict)
 
-
-    
-    logging.info("Beginning to create HTML Directory.")
-
-    HTMLDisplayFiles_dir = "/kb/module/lib/map_tnseq/HTMLDisplayFiles"
-
-    """ 
-    HTML IS NOT CREATED YET
-    # We create the directories and HTML output (imported from HTMLReport.py)
-    stats_dir, EBC_dir, MH_dir = CreateHTMLdir(tmp_dir, HTMLDisplayFiles_dir)
-
-    # We write pre_HTML_d to output JS files
-    # Preparing data for Statistics Data
-    js_stats_data_fp = os.path.join(stats_dir, "StatsData.js")
-    with open(js_stats_data_fp, "w") as f:
-        f.write("window.statistics_d = " + json.dumps(pre_HTML_d, indent=2))
-
-    # Preparing data for JS Display
-    scfPosBC_fp = os.path.join(tmp_dir, "ScfPosBC.json")
-    experiment_id = "Placeholder"
-    GeneTable_Barcodes_To_BarcodeGenes(drp_cfg["genes_table_fp"], 
-            pool_output_fp, 
-            map_cfg['genome_fp'], 
-            scfPosBC_fp, 
-            gnm_nm,
-            experiment_id
-            )
-
-
-    # Expanding Bar Chart Data
-    EBC_data_dir = os.path.join(EBC_dir, "DATA")
-    os.mkdir(EBC_data_dir)
-
-    ScfPosBC_Info_To_Scaffolds(scfPosBC_fp, 
-                                10, 
-                                drp_cfg["genes_table_fp"], 
-                                map_cfg["genome_fp"], 
-                                EBC_data_dir
-                                )
-    
-    # We move a specific file to the right loc
-    shutil.move(os.path.join(EBC_data_dir,"EBC_Scaffolds_Init_Data.js"), EBC_dir)
-
-
-    #MH Plot Data
-    MH_data_fp = os.path.join(MH_dir, "MH_Data.js")
-    PosScfBCDataToZScrPointsForValues(scfPosBC_fp, MH_data_fp, "1")
-
-    """
 
     return pre_HTML_d
 

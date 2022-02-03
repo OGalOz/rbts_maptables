@@ -19,7 +19,7 @@ def DownloadGenomeToFNA(gfu, genome_ref, scratch_dir):
     genome_fna_fp = get_fa_from_scratch(scratch_dir)
 
     if genome_fna_fp is None:
-        raise Exception("GFU Genome To Genbank did not download Assembly file in expected Manner.")
+        raise RuntimeError("GFU Genome To Genbank did not download Assembly file in expected Manner.")
 
     return genome_fna_fp
 
@@ -41,10 +41,10 @@ def get_fa_from_scratch(scratch_dir):
             all_fna_fps.append(f)
 
     if len(all_fna_fps) > 1:
-        raise Exception("Multiple .fa files in scratch directory. Expecting only one: " + \
+        raise RuntimeError("Multiple .fa files in scratch directory. Expecting only one: " + \
                         ", ".join(all_fna_fps))
     elif len(all_fna_fps) == 0:
-        raise Exception("No .fa files in scratch directory. Program needs genome fna file to run.")
+        raise RuntimeError("No .fa files in scratch directory. Program needs genome fna file to run.")
     else:
         fna_fp = all_fna_fps[0]
 
@@ -69,7 +69,7 @@ def download_genes_table(ref, dfu, op_fp):
 
 
     if "input_genes_table" not in ResultantData:
-        raise Exception("Object must contain data key 'input_genes_table' (the file handle.)"
+        raise KeyError("Object must contain data key 'input_genes_table' (the file handle.)"
                         "Existing keys: " + ", ".join(ResultantData.keys()))
     else:
         KB_fh = ResultantData["input_genes_table"] 
@@ -107,7 +107,7 @@ def download_model(ref, dfu, op_dir):
 
     for x in ["model_string", "past_end_string", "standard_model_name"]:
         if x not in ResultantData:
-            raise Exception(f"Model should contain key {x}, but does not. Try recreating Model."
+            raise KeyError(f"Model should contain key {x}, but does not. Try recreating Model."
                             " Existing keys: " + ", ".join(ResultantData.keys()))
     full_model_str = ResultantData["model_string"] + "\n" + ResultantData["past_end_string"]
 
@@ -143,7 +143,7 @@ def download_table_from_ref_to_dir(ref, ret_dp, dfu):
     logging.info(ResultantData)
 
     if "input_genes_table" not in ResultantData:
-        raise Exception("Object must contain data key 'input_genes_table' (the file handle.)"
+        raise KeyError("Object must contain data key 'input_genes_table' (the file handle.)"
                         "Existing keys: " + ", ".join(ResultantData.keys()))
     else:
         KB_fh = ResultantData["input_genes_table"] 

@@ -133,6 +133,9 @@ def PrepareUserOutputs(vp, cfg_d):
     # Returning file in zipped format:-------------------------------
     file_zip_shock_id = cfg_d['dfu'].file_to_shock({'file_path': res_dir,
                                           'pack': 'zip'})['shock_id']
+    
+    # Check for errors -?
+
 
     dir_link = {
             'shock_id': file_zip_shock_id, 
