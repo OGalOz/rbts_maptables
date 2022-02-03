@@ -4,7 +4,7 @@
         "omreegaloz"
     ],
     "contact": "",
-    "categories": ["active"],
+    "categories": ["active", "reads"],
     "widgets": {
         "input": null,
         "output": null

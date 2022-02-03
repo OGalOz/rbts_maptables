@@ -85,77 +85,77 @@ class rbts_maptablesTest(unittest.TestCase):
         logging.info("Finished running test 1. Results:")
         logging.info(ret)
 
-    def test2(self):
-        ## Test Purpose:
-        ##     Multiple FASTQ files
-        ##     & minQuality = 0 
-        #""
+    #def test2(self):
+    #    ## Test Purpose:
+    #    ##     Multiple FASTQ files
+    #    ##     & minQuality = 0 
+    #    #""
 
-        genome_ref = "63063/9/1" 
-        fastq_ref_list = ["63063/7/1", "63063/11/1", "63063/13/1"]
-        tnseq_model_name = "pKMW3_universal"
-        pool_description = "Testing"
-        output_name = "Test1"
-        test_d = copy.deepcopy(self.MTS_Test_Defaults)
-        test_d["genome_ref"] = genome_ref
-        test_d["fastq_ref_list"] = fastq_ref_list
-        test_d["tnseq_model_name"] = tnseq_model_name
-        test_d["output_name"] = output_name 
-        test_d["minQuality"] = 0 
-        #test_d["yy"] = yy 
-        ret = self.serviceImpl.run_rbts_maptables(self.ctx, test_d)
-        # Check ret:
-        logging.info("Finished running test 2. Results:")
-        logging.info(ret)
-        #""
-        #pass
-    def test3(self):
-        ## Test Purpose:
-        ##    New Genome (E Coli Keio) and FASTQs
-        ##    & minIdentity = 99
+    #    genome_ref = "63063/9/1" 
+    #    fastq_ref_list = ["63063/7/1", "63063/11/1", "63063/13/1"]
+    #    tnseq_model_name = "pKMW3_universal"
+    #    pool_description = "Testing"
+    #    output_name = "Test1"
+    #    test_d = copy.deepcopy(self.MTS_Test_Defaults)
+    #    test_d["genome_ref"] = genome_ref
+    #    test_d["fastq_ref_list"] = fastq_ref_list
+    #    test_d["tnseq_model_name"] = tnseq_model_name
+    #    test_d["output_name"] = output_name 
+    #    test_d["minQuality"] = 0 
+    #    #test_d["yy"] = yy 
+    #    ret = self.serviceImpl.run_rbts_maptables(self.ctx, test_d)
+    #    # Check ret:
+    #    logging.info("Finished running test 2. Results:")
+    #    logging.info(ret)
+    #    #""
+    #    #pass
+    #def test3(self):
+    #    ## Test Purpose:
+    #    ##    New Genome (E Coli Keio) and FASTQs
+    #    ##    & minIdentity = 99
 
-        # E Coli
-        genome_ref = "63063/3/1" 
-        fastq_ref_list = ["63063/2/1"]
-        tnseq_model_name = "Sc_Tn5"
-        pool_description = "Testing"
-        output_name = "Test1"
-        test_d = copy.deepcopy(self.MTS_Test_Defaults)
-        test_d["genome_ref"] = genome_ref
-        test_d["fastq_ref_list"] = fastq_ref_list
-        test_d["tnseq_model_name"] = tnseq_model_name
-        test_d["output_name"] = output_name 
-        test_d["minIdentity"] = 99
-        #test_d["yy"] = yy 
-        ret = self.serviceImpl.run_rbts_maptables(self.ctx, test_d)
-        # Check ret:
-        logging.info("Finished running test 3. Results:")
-        logging.info(ret)
-        #pass
+    #    # E Coli
+    #    genome_ref = "63063/3/1" 
+    #    fastq_ref_list = ["63063/2/1"]
+    #    tnseq_model_name = "Sc_Tn5"
+    #    pool_description = "Testing"
+    #    output_name = "Test1"
+    #    test_d = copy.deepcopy(self.MTS_Test_Defaults)
+    #    test_d["genome_ref"] = genome_ref
+    #    test_d["fastq_ref_list"] = fastq_ref_list
+    #    test_d["tnseq_model_name"] = tnseq_model_name
+    #    test_d["output_name"] = output_name 
+    #    test_d["minIdentity"] = 99
+    #    #test_d["yy"] = yy 
+    #    ret = self.serviceImpl.run_rbts_maptables(self.ctx, test_d)
+    #    # Check ret:
+    #    logging.info("Finished running test 3. Results:")
+    #    logging.info(ret)
+    #    #pass
 
-    def test4(self):
-        ## Test Purpose:
-        ##    New Genome (E Coli Keio) and FASTQs
-        ##    & minIdentity = 1
+    #def test4(self):
+    #    ## Test Purpose:
+    #    ##    New Genome (E Coli Keio) and FASTQs
+    #    ##    & minIdentity = 1
 
-        # E Coli
-        genome_ref = "63063/3/1" 
-        fastq_ref_list = ["63063/2/1"]
-        tnseq_model_name = "Sc_Tn5"
-        pool_description = "Testing"
-        output_name = "Test1"
-        test_d = copy.deepcopy(self.MTS_Test_Defaults)
-        test_d["genome_ref"] = genome_ref
-        test_d["fastq_ref_list"] = fastq_ref_list
-        test_d["tnseq_model_name"] = tnseq_model_name
-        test_d["output_name"] = output_name 
-        test_d["minIdentity"] = 1
-        #test_d["yy"] = yy 
-        ret = self.serviceImpl.run_rbts_maptables(self.ctx, test_d)
-        # Check ret:
-        logging.info("Finished running test 4. Results:")
-        logging.info(ret)
-        #pass
+    #    # E Coli
+    #    genome_ref = "63063/3/1" 
+    #    fastq_ref_list = ["63063/2/1"]
+    #    tnseq_model_name = "Sc_Tn5"
+    #    pool_description = "Testing"
+    #    output_name = "Test1"
+    #    test_d = copy.deepcopy(self.MTS_Test_Defaults)
+    #    test_d["genome_ref"] = genome_ref
+    #    test_d["fastq_ref_list"] = fastq_ref_list
+    #    test_d["tnseq_model_name"] = tnseq_model_name
+    #    test_d["output_name"] = output_name 
+    #    test_d["minIdentity"] = 1
+    #    #test_d["yy"] = yy 
+    #    ret = self.serviceImpl.run_rbts_maptables(self.ctx, test_d)
+    #    # Check ret:
+    #    logging.info("Finished running test 4. Results:")
+    #    logging.info(ret)
+    #    #pass
     """
     def test_your_method(self):
         # Prepare test objects in workspace if needed using

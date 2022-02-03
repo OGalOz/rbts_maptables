@@ -26,8 +26,28 @@ def CompleteRun(map_cfg_d, tmp_dir, gnm_nm,
     """
     Args:
         map_cfg_d (d): The config dict for map tnseq
-            Among others, contains keys:
-                genome_fp: (file path to genome fna file in tmp dir)
+            Among others, contains important key:
+                      genome_fp: (file path to genome fna file in tmp dir)
+                e.g.
+                "debug": False,
+                "keepblat8": True,
+                "keepTMPfna": True,
+                "flanking": 5,
+                "wobbleAllowed": 2,
+                "tmp_dir": cfg_d["tmp_dir"],
+                "tileSize": 11,
+                "stepSize": 11,
+                "blatcmd": cfg_d["blat_cmd"],
+                "model_fp": cfg_d["model_fp"],
+                "maxReads": vp["maxReads"],
+                "minQuality": vp["minQuality"],
+                "minIdentity": vp["minIdentity"],
+                "minScore": vp["minScore"],
+                "delta": vp["delta"],
+                "fastq_fp_list":  cfg_d['fastq_fp_l'],
+                "orig_fq_fns":  cfg_d['orig_fq_fns'],
+                "genome_fp": cfg_d['genome_fna_fp']
+
 
         tmp_dir (str): Path to directory
 
@@ -48,7 +68,9 @@ def CompleteRun(map_cfg_d, tmp_dir, gnm_nm,
         file to be an input to DesignRandomPool. In doing this, we make
         a copy of the original MapTnSeq run_dict and update the variable
         keys (specifically 'fastq_fp' and 'output_fp').
-    
+   
+
+
     """
 
     # Checking input
@@ -101,15 +123,21 @@ def CompleteRun(map_cfg_d, tmp_dir, gnm_nm,
         map_cfg['maxReads'] = 10**10
     map_cfg['modeltest'] = False 
 
-    current_map_cfg = copy.deepcopy(map_cfg)
 
     mts_tables_dir = cfg_d["mts_tables_dir"]
 
     for i in range(num_mts_runs):
 
+        # We clone the vars for each run and update a few of them
+        current_map_cfg = copy.deepcopy(map_cfg)
+
         current_map_cfg["fastq_fp"] = map_cfg['fastq_fp_list'][i]
+
+        # Preparing output location (dir and filenames)
         current_mts_table_dir = os.path.join(mts_tables_dir, str(i).zfill(3))
         os.mkdir(current_mts_table_dir)
+        with open(os.path.join(current_mts_table_dir, "INFO.txt"), 'w') as g:
+            g.write(f"This directory worked on file: {current_map_cfg['fastq_fp']}.")
         # (current MapTnSeq Table File)
         cMTS_output_fp = os.path.join(current_mts_table_dir, "MTS_Table.tsv")
         current_map_cfg['output_fp'] = cMTS_output_fp
@@ -126,8 +154,6 @@ def CompleteRun(map_cfg_d, tmp_dir, gnm_nm,
         MTS_return_dict = RunMapTnSeq(current_map_cfg, DEBUGPRINT=False)
         pre_HTML_d["MapTnSeq_reports_list"].append(MTS_return_dict)
 
-        # We reset the vars 
-        current_map_cfg = copy.deepcopy(map_cfg)
 
     
     logging.info("Beginning to create HTML Directory.")

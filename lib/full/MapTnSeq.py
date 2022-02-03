@@ -8,6 +8,8 @@ import argparse
 import re
 import subprocess
 import copy
+from collections import namedtuple
+from typing import Optional, Tuple
 
 """
 Notes:
@@ -593,7 +595,7 @@ def find_barcodes_and_end_of_transposon(inp_dict):
             variable.
         Then it takes the sequence and the model and looks for the "flanking"
         parts of the model in the sequence, so for example: 5 nucleotides
-        to the left and right of the barcode in the model, in the sequence.
+        to the left and right of the barcode in the model in the sequence.
         It then checks the quality of the barcode reading and compares each nt
         to the variable "minQuality". If the barcode length and quality
         are good, then it keeps the barcode and its start location.
@@ -673,6 +675,10 @@ def find_barcodes_and_end_of_transposon(inp_dict):
     # The following dict is used for the "Find" functions:
     # FindBarcode & FindModelEnd. We use fastq_fp to print
     # out debug statements
+    #find_info_tup = namedtuple("FindCFG", "flanking wobbleAllowed minQuality fastq_fp debug")
+    #f_cfg = find_info_tup(inp_dict['flanking'], inp_dict['wobbleAllowed'], 
+    #                      inp_dict['minQuality'], inp_dict['fastq_fp'],
+    #                      inp_dict['debug'])
     Find_cfg_d = {
             "flanking": inp_dict['flanking'],
             "wobbleAllowed": inp_dict['wobbleAllowed'],
@@ -722,7 +728,7 @@ def find_barcodes_and_end_of_transposon(inp_dict):
         quality = quality.rstrip()
         line_num += 1
         
-        if not (len(quality) == len(seq)):
+        if len(quality) != len(seq):
             raise Exception("Quality line is wrong length. "
                     " File {}, Line {}".format(
                 inp_dict['fastq_fp'], line_num) )
@@ -734,21 +740,21 @@ def find_barcodes_and_end_of_transposon(inp_dict):
         nReads += 1
 
         # Short sequences are unmappable
-        if not len(seq) > minReadLength:
+        if len(seq) < minReadLength:
             continue
         
         nLong += 1
 
         
         # We keep track of location within FASTQ file for Debugging purposes
-        Find_cfg_d['line_num'] = line_num
+        #Find_cfg_d['line_num'] = line_num
 
         # obsStart is start of barcode within sequence
         # str, int. This function returns [None, None] if the 
         # quality or length fails.
         barcode, obsStart = FindBarcode(seq, quality, inp_dict['model'],
                                         barcodeStart, barcodeEnd, 
-                                        Find_cfg_d)
+                                        Find_cfg_d, line_num)
         if barcode is None:
             continue
 
@@ -756,10 +762,10 @@ def find_barcodes_and_end_of_transposon(inp_dict):
         # We create a shortname which removes " " to end of "name" of sequence
         # e.g. "@M00361:58:000000000-C9BPW:1:1102:11648:1000 1:N:0:GCCAAT"
         # becomes "@M00361:58:000000000-C9BPW:1:1102:11648:1000"
-        shortname = re.sub(r' .*$', '', name)
+        shortname = name.split(' ')[0]
 
         if shortname in nameToBarcode:
-            raise Exception("Duplicate read name: {}\nFile {} line no. {}".format(
+            raise KeyError("Duplicate read name: {}\nFile {} line no. {}".format(
                             shortname, inp_dict['fastq_fp'], line_num -3))
 
         nameToBarcode[shortname] = barcode
@@ -820,7 +826,7 @@ def find_barcodes_and_end_of_transposon(inp_dict):
 
     
 
-def FindBarcode(seq, quality, model, expStart, expEnd, cfg_d):
+def FindBarcode(seq, quality, model, expStart, expEnd, cfg_d, line_num) -> Optional[Tuple[str,int]]:
     """
     Args:
         seq (str) DNA sequence
@@ -835,7 +841,7 @@ def FindBarcode(seq, quality, model, expStart, expEnd, cfg_d):
             flanking (int) number of nucleotides on each side that must match
             debug (bool)
             fastq_fp: (str) The path to the FASTQ file
-            line_num: (int) line number within FASTQ file of quality 
+        line_num: (int) line number within FASTQ file of quality 
 
     Returns:
         list<barcode, obsStart>
@@ -881,12 +887,12 @@ def FindBarcode(seq, quality, model, expStart, expEnd, cfg_d):
                 raise Exception("Invalid score {} from barcode {}".format(
                 score, barcode) + " quality {}".format(
                 barqual) + " in file {} line {}".format(
-                    cfg_d['fastq_fp'], cfg_d['line_num']))
+                    cfg_d['fastq_fp'], line_num))
             if score < cfg_d['minQuality']:
                 if cfg_d['debug']:
                     logging.info("Low quality {} for barcode {} in {}\n".format(
                         score, barcode, seq) + "File {} line {}".format(
-                            cfg_d['fastq_fp'], cfg_d['line_num']))
+                            cfg_d['fastq_fp'], line_num))
                 return [None, None]
     
     return [barcode, start] # str, int
