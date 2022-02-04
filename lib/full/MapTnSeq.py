@@ -1055,7 +1055,7 @@ def HandleGenomeBLAT(rows, hitsPastEnd, HG_d, debug):
         logging.info(HG_d['nMapped'])
         error_msg = "BLAT Compare Genome to TmpFNA Read Name error: " + read
         error_msg += "\nThis is an internal error running BLAT8, Contact helpdesk."
-        raise Exception(error_msg)
+        raise RuntimeError(error_msg)
 
 
     # indexes within besthits entries lists:
@@ -1063,7 +1063,8 @@ def HandleGenomeBLAT(rows, hitsPastEnd, HG_d, debug):
 
     # besthits is a list of lists, where each list corresponds to a row from reads
     # if the score passes a threshold, each sublist is 
-    # [subject name (scaffold), subject Begin, strand, score, identity, query Begin, query End]
+    # [subject name (scaffold), subject Begin, strand, score, identity, 
+    # query Begin, query End]
     besthits = []
 
     for row in rows:

@@ -1,0 +1,379 @@
+.
+├── Dockerfile
+├── IMPLSESSION.vim
+├── LICENSE
+├── Makefile
+├── README.md
+├── RELEASE_NOTES.md
+├── UICODE.vim
+├── data
+│   └── README.md
+├── dependencies.json
+├── deploy.cfg
+├── documentation
+│   └── RBTnSeq_Mapping.pdf
+├── g_script.sh
+├── kbase.yml
+├── lib
+│   ├── README.md
+│   ├── full
+│   │   ├── FullProgram.py
+│   │   └── MapTnSeq.py
+│   ├── installed_clients
+│   │   ├── AssemblyUtilClient.py
+│   │   ├── DataFileUtilClient.py
+│   │   ├── GenomeFileUtilClient.py
+│   │   ├── KBaseReportClient.py
+│   │   ├── WorkspaceClient.py
+│   │   ├── __init__.py
+│   │   ├── authclient.py
+│   │   ├── baseclient.py
+│   │   └── rbts_genome_to_genetableClient.py
+│   ├── rbts_maptables
+│   │   ├── __init__.py
+│   │   ├── blat
+│   │   ├── rbts_maptablesImpl.py
+│   │   ├── rbts_maptablesImpl.py.bak-2021-10-04-18-29-24
+│   │   └── rbts_maptablesServer.py
+│   ├── tmp
+│   │   ├── FullProgram.py
+│   │   ├── display.yaml
+│   │   ├── downloaders.py
+│   │   ├── map_tnseqImpl.py
+│   │   ├── map_tnseq_server_test.py
+│   │   ├── spec.json
+│   │   └── validate.py
+│   └── util
+│       ├── PrepareIO.py
+│       ├── downloaders.py
+│       └── validate.py
+├── rbts_maptables.spec
+├── scripts
+│   ├── entrypoint.sh
+│   ├── prepare_deploy_cfg.py
+│   └── run_async.sh
+├── sdk.cfg
+├── set_env_vars.sh
+├── test
+│   ├── README.md
+│   └── rbts_maptables_server_test.py
+├── test_local
+│   ├── readme.txt
+│   ├── run_bash.sh
+│   ├── run_docker.sh
+│   ├── run_subjob.sh
+│   ├── run_tests.sh
+│   ├── subjobs
+│   │   ├── 09eb7819-9418-4b18-a1ff-49f8d4dffe51_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 0cd6b09e-2518-48af-aa18-dba5cc450256_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 0ec016b2-24dc-402c-88a3-2b860d6c23f7_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 0ed99224-fb7b-487a-82aa-69fd3a4914c4_dockerhub-ci.kbase.us_kbase_rbts_genome_to_genetable.4b1a480c8c63eee1642050dd44d43f7b2f782a14
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 14e83e12-83f0-4d34-8065-aaf0189afe67_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 1d698cf3-1ddb-45ff-a600-2400b611215c_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 3ae68368-b7c5-4e7a-942c-5a217b90f53d_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 417959af-6002-4a7b-a7bb-05f2a041055c_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 44d75ee7-1f16-4daf-927a-57e988982302_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 4a0d7575-9caa-4b00-853b-8fa3b43c1c1b_dockerhub-ci.kbase.us_kbase_assemblyutil.b5b28e7a6ecce5e35672ec95957b46b147993b04
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 4f201873-05ef-40c3-bdf0-b19966cd6441_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 4f852bd7-52fa-4075-bfdb-4b64f5b3add3_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 55171919-12ba-42bf-b465-9f974be1b622_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 5a10120c-7b1e-4a91-a2e7-38ecfeddcd26_dockerhub-ci.kbase.us_kbase_genomefileutil.c8c6948e0bebb9f0a6e95abe057af62b3ca57195
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 5daaa5ad-4511-493c-939f-6f5f7c119865_dockerhub-ci.kbase.us_kbase_rbts_genome_to_genetable.4b1a480c8c63eee1642050dd44d43f7b2f782a14
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 60dce9da-441b-4f67-8d00-0f3153f24a4e_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 66b706b7-7c59-47dc-b00f-4575f6e3c658_dockerhub-ci.kbase.us_kbase_assemblyutil.b5b28e7a6ecce5e35672ec95957b46b147993b04
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 6d567ea8-faad-4678-a865-c49ccfc6f43b_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 6f924438-ecd3-4dcd-b7fa-eeffa73f440d_dockerhub-ci.kbase.us_kbase_assemblyutil.b5b28e7a6ecce5e35672ec95957b46b147993b04
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 7b88c729-a9c2-44ad-9215-921018fd7926_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 87483420-9257-49f3-89ad-7eff5022e84e_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 92b7820a-e5bc-4384-8f06-0b1c5958b284_dockerhub-ci.kbase.us_kbase_wslargedataio.ef3871204f798844738a268005e84a0530f7aaf2
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── output.json.log
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 96844ba9-0888-4af4-909b-f3af81f44c12_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── 9cba17bf-26c4-4291-9b33-3eca92de5496_dockerhub-ci.kbase.us_kbase_genomefileutil.c8c6948e0bebb9f0a6e95abe057af62b3ca57195
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── a494b412-c6d7-4166-a459-bdbb0ec1a687_dockerhub-ci.kbase.us_kbase_genomefileutil.c8c6948e0bebb9f0a6e95abe057af62b3ca57195
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── ac6ea26d-6c5c-4991-8819-55975285c7b1_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── af66e4bd-59ed-466f-9e31-9753c44cb378_dockerhub-ci.kbase.us_kbase_wslargedataio.ef3871204f798844738a268005e84a0530f7aaf2
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── output.json.log
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── b8644db6-7f25-4609-84c0-8d6c101d7710_dockerhub-ci.kbase.us_kbase_kbasereport.b8bb470a4c88d65230e525db48d6a3730069185d
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── b8cc07f1-a2cd-41ea-8b0c-f84c79f2a075_dockerhub-ci.kbase.us_kbase_wslargedataio.ef3871204f798844738a268005e84a0530f7aaf2
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── output.json.log
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── bd324963-3eaa-4db2-89d2-26713802f30f_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── c552bfcc-7304-4860-9123-d33deb3434ba_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── ca3bee9a-9118-45c0-a8c3-d4c99a5c4fcf_dockerhub-ci.kbase.us_kbase_genomefileutil.c8c6948e0bebb9f0a6e95abe057af62b3ca57195
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── ca5573ab-c5e0-4b43-b7d4-f573278d246d_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── ce58940f-115f-450f-9617-6753d27eef61_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── d0b3d94e-dfda-4957-9767-57ace4075672_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── d2c9be96-99c1-4075-963e-76a0becdbc01_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── d7586eda-ac25-4a66-938f-7881bb3af97c_dockerhub-ci.kbase.us_kbase_datafileutil.b640d1ce826f46d1bff497a2f475a4c7de016a18
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   ├── ef940131-a82e-41c2-9607-bbe5ab212216_dockerhub-ci.kbase.us_kbase_assemblyutil.b5b28e7a6ecce5e35672ec95957b46b147993b04
+│   │   │   └── workdir
+│   │   │       ├── config.properties
+│   │   │       ├── input.json
+│   │   │       ├── output.json
+│   │   │       ├── tmp
+│   │   │       └── token
+│   │   └── fc073c8d-9a2e-446f-967c-b43671d1efa6_dockerhub-ci.kbase.us_kbase_wslargedataio.ef3871204f798844738a268005e84a0530f7aaf2
+│   │       └── workdir
+│   │           ├── config.properties
+│   │           ├── input.json
+│   │           ├── output.json
+│   │           ├── output.json.log
+│   │           ├── tmp
+│   │           └── token
+│   ├── test.cfg
+│   └── workdir
+│       ├── config.properties
+│       ├── test.cfg
+│       ├── test_coverage
+│       │   ├── coverage_html.js
+│       │   ├── index.html
+│       │   ├── jquery.ba-throttle-debounce.min.js
+│       │   ├── jquery.hotkeys.js
+│       │   ├── jquery.isonscreen.js
+│       │   ├── jquery.min.js
+│       │   ├── jquery.tablesorter.min.js
+│       │   ├── keybd_closed.png
+│       │   ├── keybd_open.png
+│       │   ├── rbts_maptables___init___py.html
+│       │   ├── rbts_maptables_authclient_py.html
+│       │   ├── rbts_maptables_rbts_maptablesImpl_py.html
+│       │   ├── rbts_maptables_rbts_maptablesServer_py.html
+│       │   ├── status.json
+│       │   └── style.css
+│       ├── tmp
+│       └── token
+├── tox.ini
+├── tree.txt
+└── ui
+    ├── README.md
+    └── narrative
+        └── methods
+            └── run_rbts_maptables
+                ├── display.yaml
+                ├── img
+                │   ├── RBTS_Mapping.png
+                │   └── diagram.png
+                └── spec.json
+
+137 directories, 239 files
