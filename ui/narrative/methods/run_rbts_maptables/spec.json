@@ -1,5 +1,5 @@
 {
-    "ver": "0.0.1",
+    "ver": "1.0.0",
     "authors": [
         "omreegaloz"
     ],
@@ -210,15 +210,7 @@
                 }
 
             ],
-            "output_mapping": [
-                {
-                    "service_method_output_path": [0,"report_name"],
-                    "target_property": "report_name"
-                },{
-                    "service_method_output_path": [0,"report_ref"],
-                    "target_property": "report_ref"
-                }
-            ]
+            "output_mapping": null
         }
     },
     "job_id_output_field": "docker"
