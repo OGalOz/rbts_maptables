@@ -1,263 +1,263 @@
 {
-  "ver": "1.0.0",
-  "authors": [
-    "omreegaloz"
-  ],
-  "contact": "",
-  "categories": [
-    "active"
-  ],
-  "widgets": {
-    "input": null,
-    "output": "no-display"
-  },
-  "parameters": [
-    {
-      "id": "genome_ref",
-      "optional": false,
-      "advanced": false,
-      "allow_multiple": false,
-      "default_values": [
-        ""
-      ],
-      "field_type": "text",
-      "text_options": {
-        "valid_ws_types": [
-          "KBaseGenomes.Genome"
-        ]
-      }
+    "ver": "1.0.0",
+    "authors": [
+        "omreegaloz"
+    ],
+    "contact": "",
+    "categories": [
+        "active"
+    ],
+    "widgets": {
+        "input": null,
+        "output": "no-display"
     },
-    {
-      "id": "tnseq_model_name",
-      "optional": false,
-      "advanced": false,
-      "allow_multiple": false,
-      "default_values": [
-        ""
-      ],
-      "field_type": "dropdown",
-      "dropdown_options": {
-        "options": [
-          {
-            "value": "Sc_Tn5",
-            "display": "Sc_Tn5"
-          },
-          {
-            "value": "ezTn5_Tet_Bifido",
-            "display": "ezTn5_Tet_Bifido"
-          },
-          {
-            "value": "ezTn5_kan1",
-            "display": "ezTn5_kan1"
-          },
-          {
-            "value": "ezTn5_kanU",
-            "display": "ezTn5_kanU"
-          },
-          {
-            "value": "magic_Tn5",
-            "display": "magic_Tn5"
-          },
-          {
-            "value": "magic_mariner",
-            "display": "magic_mariner"
-          },
-          {
-            "value": "magic_mariner.2",
-            "display": "magic_mariner.2"
-          },
-          {
-            "value": "pHIMAR_kan",
-            "display": "pHIMAR_kan"
-          },
-          {
-            "value": "pKMW3",
-            "display": "pKMW3"
-          },
-          {
-            "value": "pKMW3_universal",
-            "display": "pKMW3_universal"
-          },
-          {
-            "value": "pKMW7",
-            "display": "pKMW7"
-          },
-          {
-            "value": "pKMW7_U",
-            "display": "pKMW7_U"
-          }
-        ]
-      }
-    },
-    {
-      "id": "fastq_ref_list",
-      "optional": false,
-      "advanced": false,
-      "allow_multiple": true,
-      "default_values": [
-        ""
-      ],
-      "field_type": "text",
-      "text_options": {
-        "valid_ws_types": [
-          "KBaseFile.SingleEndLibrary"
-        ]
-      }
-    },
-    {
-      "id": "maxReads",
-      "optional": true,
-      "advanced": true,
-      "text_options": {
-        "validate_as": "int"
-      },
-      "allow_multiple": false,
-      "default_values": [
-        ""
-      ],
-      "field_type": "text"
-    },
-    {
-      "id": "minQuality",
-      "optional": true,
-      "advanced": true,
-      "text_options": {
-        "validate_as": "int",
-        "min_int": 0,
-        "max_int": 100
-      },
-      "allow_multiple": false,
-      "default_values": [
-        "10"
-      ],
-      "field_type": "text"
-    },
-    {
-      "id": "minIdentity",
-      "optional": true,
-      "advanced": true,
-      "text_options": {
-        "validate_as": "int",
-        "min_int": 0,
-        "max_int": 100
-      },
-      "allow_multiple": false,
-      "default_values": [
-        "90"
-      ],
-      "field_type": "text"
-    },
-    {
-      "id": "minScore",
-      "optional": true,
-      "advanced": true,
-      "text_options": {
-        "validate_as": "int",
-        "min_int": 0
-      },
-      "allow_multiple": false,
-      "default_values": [
-        "15"
-      ],
-      "field_type": "text"
-    },
-    {
-      "id": "delta",
-      "optional": true,
-      "advanced": true,
-      "text_options": {
-        "validate_as": "int"
-      },
-      "allow_multiple": false,
-      "default_values": [
-        "5"
-      ],
-      "field_type": "text"
-    },
-    {
-      "id": "output_name",
-      "optional": false,
-      "advanced": false,
-      "allow_multiple": false,
-      "default_values": [
-        ""
-      ],
-      "field_type": "text",
-      "text_options": {
-        "is_output_name": true
-      }
-    }
-  ],
-  "behavior": {
-    "service-mapping": {
-      "url": "",
-      "name": "rbts_maptables",
-      "method": "run_rbts_maptables",
-      "input_mapping": [
+    "parameters": [
         {
-          "narrative_system_variable": "workspace",
-          "target_property": "workspace_name"
+            "id": "genome_ref",
+            "optional": false,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": [
+                ""
+            ],
+            "field_type": "text",
+            "text_options": {
+                "valid_ws_types": [
+                    "KBaseGenomes.Genome"
+                ]
+            }
         },
         {
-          "narrative_system_variable": "workspace_id",
-          "target_property": "workspace_id"
+            "id": "tnseq_model_name",
+            "optional": false,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": [
+                ""
+            ],
+            "field_type": "dropdown",
+            "dropdown_options": {
+                "options": [
+                    {
+                        "value": "Sc_Tn5",
+                        "display": "Sc_Tn5"
+                    },
+                    {
+                        "value": "ezTn5_Tet_Bifido",
+                        "display": "ezTn5_Tet_Bifido"
+                    },
+                    {
+                        "value": "ezTn5_kan1",
+                        "display": "ezTn5_kan1"
+                    },
+                    {
+                        "value": "ezTn5_kanU",
+                        "display": "ezTn5_kanU"
+                    },
+                    {
+                        "value": "magic_Tn5",
+                        "display": "magic_Tn5"
+                    },
+                    {
+                        "value": "magic_mariner",
+                        "display": "magic_mariner"
+                    },
+                    {
+                        "value": "magic_mariner.2",
+                        "display": "magic_mariner.2"
+                    },
+                    {
+                        "value": "pHIMAR_kan",
+                        "display": "pHIMAR_kan"
+                    },
+                    {
+                        "value": "pKMW3",
+                        "display": "pKMW3"
+                    },
+                    {
+                        "value": "pKMW3_universal",
+                        "display": "pKMW3_universal"
+                    },
+                    {
+                        "value": "pKMW7",
+                        "display": "pKMW7"
+                    },
+                    {
+                        "value": "pKMW7_U",
+                        "display": "pKMW7_U"
+                    }
+                ]
+            }
         },
         {
-          "input_parameter": "genome_ref",
-          "target_property": "genome_ref",
-          "target_type_transform": "resolved-ref"
+            "id": "fastq_ref_list",
+            "optional": false,
+            "advanced": false,
+            "allow_multiple": true,
+            "default_values": [
+                ""
+            ],
+            "field_type": "text",
+            "text_options": {
+                "valid_ws_types": [
+                    "KBaseFile.SingleEndLibrary"
+                ]
+            }
         },
         {
-          "input_parameter": "tnseq_model_name",
-          "target_property": "tnseq_model_name"
+            "id": "maxReads",
+            "optional": true,
+            "advanced": true,
+            "text_options": {
+                "validate_as": "int"
+            },
+            "allow_multiple": false,
+            "default_values": [
+                ""
+            ],
+            "field_type": "text"
         },
         {
-          "input_parameter": "fastq_ref_list",
-          "target_property": "fastq_ref_list",
-          "target_type_transform": "resolved-ref"
+            "id": "minQuality",
+            "optional": true,
+            "advanced": true,
+            "text_options": {
+                "validate_as": "int",
+                "min_int": 0,
+                "max_int": 100
+            },
+            "allow_multiple": false,
+            "default_values": [
+                "10"
+            ],
+            "field_type": "text"
         },
         {
-          "input_parameter": "maxReads",
-          "target_property": "maxReads"
+            "id": "minIdentity",
+            "optional": true,
+            "advanced": true,
+            "text_options": {
+                "validate_as": "int",
+                "min_int": 0,
+                "max_int": 100
+            },
+            "allow_multiple": false,
+            "default_values": [
+                "90"
+            ],
+            "field_type": "text"
         },
         {
-          "input_parameter": "minQuality",
-          "target_property": "minQuality"
+            "id": "minScore",
+            "optional": true,
+            "advanced": true,
+            "text_options": {
+                "validate_as": "int",
+                "min_int": 0
+            },
+            "allow_multiple": false,
+            "default_values": [
+                "15"
+            ],
+            "field_type": "text"
         },
         {
-          "input_parameter": "minIdentity",
-          "target_property": "minIdentity"
+            "id": "delta",
+            "optional": true,
+            "advanced": true,
+            "text_options": {
+                "validate_as": "int"
+            },
+            "allow_multiple": false,
+            "default_values": [
+                "5"
+            ],
+            "field_type": "text"
         },
         {
-          "input_parameter": "minScore",
-          "target_property": "minScore"
-        },
-        {
-          "input_parameter": "delta",
-          "target_property": "delta"
-        },
-        {
-          "input_parameter": "output_name",
-          "target_property": "output_name"
+            "id": "output_name",
+            "optional": false,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": [
+                ""
+            ],
+            "field_type": "text",
+            "text_options": {
+                "is_output_name": true
+            }
         }
-      ],
-      "output_mapping": [
-        {
-          "service_method_output_path": [
-            0,
-            "report_ref"
-          ],
-          "target_property": "report_ref"
-        },
-        {
-          "service_method_output_path": [
-            0,
-            "report_name"
-          ],
-          "target_property": "report_name"
+    ],
+    "behavior": {
+        "service-mapping": {
+            "url": "",
+            "name": "rbts_maptables",
+            "method": "run_rbts_maptables",
+            "input_mapping": [
+                {
+                    "narrative_system_variable": "workspace",
+                    "target_property": "workspace_name"
+                },
+                {
+                    "narrative_system_variable": "workspace_id",
+                    "target_property": "workspace_id"
+                },
+                {
+                    "input_parameter": "genome_ref",
+                    "target_property": "genome_ref",
+                    "target_type_transform": "resolved-ref"
+                },
+                {
+                    "input_parameter": "tnseq_model_name",
+                    "target_property": "tnseq_model_name"
+                },
+                {
+                    "input_parameter": "fastq_ref_list",
+                    "target_property": "fastq_ref_list",
+                    "target_type_transform": "resolved-ref"
+                },
+                {
+                    "input_parameter": "maxReads",
+                    "target_property": "maxReads"
+                },
+                {
+                    "input_parameter": "minQuality",
+                    "target_property": "minQuality"
+                },
+                {
+                    "input_parameter": "minIdentity",
+                    "target_property": "minIdentity"
+                },
+                {
+                    "input_parameter": "minScore",
+                    "target_property": "minScore"
+                },
+                {
+                    "input_parameter": "delta",
+                    "target_property": "delta"
+                },
+                {
+                    "input_parameter": "output_name",
+                    "target_property": "output_name"
+                }
+            ],
+            "output_mapping": [
+                {
+                    "service_method_output_path": [
+                        0,
+                        "report_ref"
+                    ],
+                    "target_property": "report_ref"
+                },
+                {
+                    "service_method_output_path": [
+                        0,
+                        "report_name"
+                    ],
+                    "target_property": "report_name"
+                }
+            ]
         }
-      ]
-    }
-  },
-  "job_id_output_field": "docker"
+    },
+    "job_id_output_field": "docker"
 }
